@@ -23,9 +23,12 @@ pipeline {
     			    -Dsonar.organization=nabaansari9 \
     			    -Dsonar.projectKey=jenkins-docker-example'
                 }
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
         }
-
     }
         
 }
