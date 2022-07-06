@@ -19,10 +19,7 @@ pipeline {
         stage('SonarQube Scan'){
             steps{
                 withSonarQubeEnv('SonarCloud'){
-                    sh 'mvn sonar:sonar \
-    			    -Dsonar.host.url=https://sonarcloud.io \
-    			    -Dsonar.organization=nabaansari9 \
-    			    -Dsonar.projectKey=GCP_project'
+                    sh 'mvn sonar:sonar
                 }
             }
         }
