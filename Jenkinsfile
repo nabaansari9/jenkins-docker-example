@@ -27,11 +27,13 @@ pipeline {
        } */
         stage("Publish to Nexus Repository Manager") {
             steps {
+                script{
+                def mavenPom = readMavenPom file 'pom.xml'
                 nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'my-app', 
                         classifier: '', 
-                        file: 'target/my-app-1.0-SNAPSHOT.jar', 
+                        file: "target/my-app-${mavenPom.version}.jar", 
                         type: 'jar'
                         ]
                     ], 
@@ -41,7 +43,8 @@ pipeline {
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'maven-central-repository', 
-                    version: '1.0-SNAPSHOT'
+                    version: "${mavenPom.version}"
+                }
 
             }
    }     
