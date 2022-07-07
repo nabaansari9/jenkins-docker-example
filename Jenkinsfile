@@ -28,7 +28,7 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script{
-                def mavenPom = readMavenPom file 'pom.xml'
+                def mavenPom = readMavenPom file: 'pom.xml'
                 nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'my-app', 
