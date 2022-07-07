@@ -24,6 +24,7 @@ pipeline {
     			    -Dsonar.projectKey=jenkins-docker-example'
                 }
         }
+       }
         stage("Publish to Nexus Repository Manager") {
             steps {
                 nexusArtifactUploader artifacts: [
@@ -43,7 +44,6 @@ pipeline {
                     version: '1.0-SNAPSHOT'
 
             }
-        }
-    }
-   }    
-} 
+   }     
+}
+}
