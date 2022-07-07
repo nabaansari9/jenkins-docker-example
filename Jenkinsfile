@@ -16,7 +16,7 @@ pipeline {
                 sh 'mvn clean install'
             }    
         }
-       stage('SonarQube Scan'){
+      /* stage('SonarQube Scan'){
             steps{
                 withSonarQubeEnv('SonarCloud'){
                     sh 'mvn sonar:sonar \
@@ -24,7 +24,7 @@ pipeline {
     			    -Dsonar.projectKey=jenkins-docker-example'
                 }
         }
-       }
+       } */
         stage("Publish to Nexus Repository Manager") {
             steps {
                 nexusArtifactUploader artifacts: [
