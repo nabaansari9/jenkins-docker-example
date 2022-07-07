@@ -16,14 +16,32 @@ pipeline {
                 sh 'mvn clean install'
             }    
         }
-        stage('SonarQube Scan'){
+       /* stage('SonarQube Scan'){
             steps{
                 withSonarQubeEnv('SonarCloud'){
                     sh 'mvn sonar:sonar \
     			    -Dsonar.organization=nabaansari9 \
     			    -Dsonar.projectKey=jenkins-docker-example'
                 }
-        }
+        } */
+        stage("Publish to Nexus Repository Manager") {
+            steps {
+                nexusArtifactUploader artifacts: [
+                    [
+                        artifactId: 'my-app', 
+                        classifier: '', 
+                        file: 'target/Hello World 1.0-SNAPSHOT.jar', 
+                        type: 'jar'
+                        ]
+                    ], 
+                    credentialsId: 'NEXUS_CRED', 
+                    groupId: 'com.mycompany.app', 
+                    nexusUrl: 'http://18.205.22.131:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'maven-central-repository', 
+                    version: '1.0-SNAPSHOT'
+
+            }
     }
-   }       
-}
+   }     
