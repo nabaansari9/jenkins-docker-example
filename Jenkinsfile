@@ -36,7 +36,7 @@ pipeline {
                     ], 
                     credentialsId: 'NEXUS_CRED', 
                     groupId: 'com.mycompany.app', 
-                    nexusUrl: 'http://18.205.22.131:8081', 
+                    nexusUrl: '18.205.22.131:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'maven-central-repository', 
